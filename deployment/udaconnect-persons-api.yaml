@@ -28,7 +28,6 @@ spec:
       app: udaconnect-persons-api
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: udaconnect-persons-api
     spec:
