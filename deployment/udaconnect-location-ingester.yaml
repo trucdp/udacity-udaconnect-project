@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: udaconnect-location-ingester
+  name: udaconnect-location-ingester
+spec:
+  ports:
+  - name: 5005-5005
+    nodePort: 30005
+    port: 5005
+    protocol: TCP
+    targetPort: 5005
+  selector:
+    app: udaconnect-location-ingester
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: udaconnect-location-ingester
+  name: udaconnect-location-ingester
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: udaconnect-location-ingester
+  template:
+    metadata:
+      labels:
+        app: udaconnect-location-ingester
+    spec:
+      containers:
+      - image: barbietunnie/udaconnect-location-ingester:latest
+        name: udaconnect-location-ingester
+        imagePullPolicy: Always
+        env:
+        - name: TOPIC_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: kafka-env
+              key: TOPIC_NAME
+        - name: KAFKA_SERVER
+          valueFrom:
+            configMapKeyRef:
+              name: kafka-env
+              key: KAFKA_SERVER
+      restartPolicy: Always
