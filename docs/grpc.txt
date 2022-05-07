@@ -1,0 +1,42 @@
+gRPC Documentation
+-------------------------
+The location data should conform to the following protobuf definition:
+
+'''
+message LocationMessage {
+    int32 person_id = 1;
+    string latitude = 2;
+    string longitude = 3;
+}
+'''
+
+For example, here is a sample payload:
+
+'''
+{
+    "person_id": 1,
+    "latitude": "34.018299292",
+    "longitude": "-0.3678282"
+}
+'''
+
+The gRPC server is hosted by the 'udaconnect-location-ingester' microservice on port 5005.
+
+A sample gRPC client 'grpc_client.py' has been provided in the 'udaconnect-location-ingester' microservice to illustrate sending location data to the location ingester.
+
+
+To test, run the following commands:
+
+'''
+export LOCATION_INGESTER_POD=$(kubectl get pods --namespace default -l "app=udaconnect-location-ingester" -o jsonpath="{.items[0].metadata.name}")
+
+kubectl exec -it $LOCATION_INGESTER_POD sh
+'''
+
+Once you are inside the shell, execute the grpc client with the command below:
+
+'''
+python grpc_client.py
+'''
+
+
