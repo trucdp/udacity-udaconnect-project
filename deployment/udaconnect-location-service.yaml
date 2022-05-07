@@ -65,9 +65,9 @@ spec:
             configMapKeyRef:
               name: kafka-env
               key: TOPIC_NAME
-        - name: KAFKA_URL
+        - name: KAFKA_SERVER
           valueFrom:
             configMapKeyRef:
               name: kafka-env
-              key: KAFKA_URL
+              key: KAFKA_SERVER
       restartPolicy: Always
