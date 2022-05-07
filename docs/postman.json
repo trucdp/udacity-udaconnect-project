@@ -1,0 +1,798 @@
+{
+	"info": {
+		"_postman_id": "fac58dac-4f1d-4893-8f41-c55cc304e260",
+		"name": "UdaConnect API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "locations",
+					"item": [
+						{
+							"name": "{location id}",
+							"item": [
+								{
+									"name": "get location resource",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/locations/:location_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"locations",
+												":location_id"
+											],
+											"variable": [
+												{
+													"key": "location_id",
+													"value": "velit mollit",
+													"description": "(Required) Unique ID for a given Location"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/locations/:location_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"locations",
+														":location_id"
+													],
+													"variable": [
+														{
+															"key": "location_id",
+															"value": "velit mollit",
+															"description": "(Required) Unique ID for a given Location"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "post location resource",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/locations/:location_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"locations",
+												":location_id"
+											],
+											"variable": [
+												{
+													"key": "location_id",
+													"value": "velit mollit",
+													"description": "(Required) Unique ID for a given Location"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/locations/:location_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"locations",
+														":location_id"
+													],
+													"variable": [
+														{
+															"key": "location_id",
+															"value": "velit mollit",
+															"description": "(Required) Unique ID for a given Location"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "get location resource",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/locations?location_id=velit mollit",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"locations"
+									],
+									"query": [
+										{
+											"key": "location_id",
+											"value": "velit mollit",
+											"description": "Unique ID for a given Location"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/locations?location_id=velit mollit",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"locations"
+											],
+											"query": [
+												{
+													"key": "location_id",
+													"value": "velit mollit"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "post location resource",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/locations?location_id=velit mollit",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"locations"
+									],
+									"query": [
+										{
+											"key": "location_id",
+											"value": "velit mollit",
+											"description": "Unique ID for a given Location"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/locations?location_id=velit mollit",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"locations"
+											],
+											"query": [
+												{
+													"key": "location_id",
+													"value": "velit mollit"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "persons",
+					"item": [
+						{
+							"name": "{person id}",
+							"item": [
+								{
+									"name": "get person resource",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/persons/:person_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"persons",
+												":person_id"
+											],
+											"variable": [
+												{
+													"key": "person_id",
+													"value": "velit mollit",
+													"description": "(Required) Unique ID for a given Person"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/persons/:person_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"persons",
+														":person_id"
+													],
+													"variable": [
+														{
+															"key": "person_id",
+															"value": "velit mollit",
+															"description": "(Required) Unique ID for a given Person"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "get connection data resource",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/persons/:person_id/connection?distance=velit mollit&end_date=velit mollit&start_date=velit mollit",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"persons",
+												":person_id",
+												"connection"
+											],
+											"query": [
+												{
+													"key": "distance",
+													"value": "velit mollit",
+													"description": "Proximity to a given user in meters"
+												},
+												{
+													"key": "end_date",
+													"value": "velit mollit",
+													"description": "Upper bound of date range"
+												},
+												{
+													"key": "start_date",
+													"value": "velit mollit",
+													"description": "Lower bound of date range"
+												}
+											],
+											"variable": [
+												{
+													"key": "person_id",
+													"value": "velit mollit",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/persons/:person_id/connection?distance=velit mollit&end_date=velit mollit&start_date=velit mollit",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"persons",
+														":person_id",
+														"connection"
+													],
+													"query": [
+														{
+															"key": "distance",
+															"value": "velit mollit"
+														},
+														{
+															"key": "end_date",
+															"value": "velit mollit"
+														},
+														{
+															"key": "start_date",
+															"value": "velit mollit"
+														}
+													],
+													"variable": [
+														{
+															"key": "person_id",
+															"value": "velit mollit",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "get persons resource",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/persons",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"persons"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/persons",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"persons"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "post persons resource",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/persons",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"persons"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/persons",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"persons"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "api/persons",
+			"item": [
+				{
+					"name": "get persons resource",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/persons",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"persons"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/persons",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"persons"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "post persons resource",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/persons",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"persons"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/persons",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"persons"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "get person resource",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/persons/:person_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"persons",
+								":person_id"
+							],
+							"variable": [
+								{
+									"key": "person_id",
+									"value": "nulla cupidatat",
+									"description": "(Required) Unique ID for a given Person"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/persons/:person_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"persons",
+										":person_id"
+									],
+									"variable": [
+										{
+											"key": "person_id",
+											"value": "nulla cupidatat",
+											"description": "(Required) Unique ID for a given Person"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "get connection data resource",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/persons/:person_id/connection?distance=sint irure nostrud&end_date=sint irure nostrud&start_date=sint irure nostrud",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"persons",
+								":person_id",
+								"connection"
+							],
+							"query": [
+								{
+									"key": "distance",
+									"value": "sint irure nostrud",
+									"description": "Proximity to a given user in meters"
+								},
+								{
+									"key": "end_date",
+									"value": "sint irure nostrud",
+									"description": "Upper bound of date range"
+								},
+								{
+									"key": "start_date",
+									"value": "sint irure nostrud",
+									"description": "Lower bound of date range"
+								}
+							],
+							"variable": [
+								{
+									"key": "person_id",
+									"value": "sint irure nostrud",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/persons/:person_id/connection?distance=sint irure nostrud&end_date=sint irure nostrud&start_date=sint irure nostrud",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"persons",
+										":person_id",
+										"connection"
+									],
+									"query": [
+										{
+											"key": "distance",
+											"value": "sint irure nostrud"
+										},
+										{
+											"key": "end_date",
+											"value": "sint irure nostrud"
+										},
+										{
+											"key": "start_date",
+											"value": "sint irure nostrud"
+										}
+									],
+									"variable": [
+										{
+											"key": "person_id",
+											"value": "sint irure nostrud",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/",
+			"type": "string"
+		}
+	]
+}
