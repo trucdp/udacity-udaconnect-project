@@ -121,7 +121,8 @@ Afterwards, you can test that `kubectl` works by running a command like `kubectl
         --create --bootstrap-server $BOOTSTRAP_SERVER:9092 \
         --replication-factor 1 --partitions 1 \
         --topic $TOPIC
-        ```
+    ```
+    
 11. `kubectl apply -f deployment/udaconnect-location-service.yaml` - Set up the location service
 12. `kubectl apply -f deployment/udaconnect-location-ingester.yaml` - Set up the location ingester service
 13. Confirm that all the pods and services are in the running state before proceeding with your test
