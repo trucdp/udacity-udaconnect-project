@@ -31,7 +31,7 @@ spec:
         app: udaconnect-location-service
     spec:
       containers:
-      - image: barbietunnie/udaconnect-location-service:latest
+      - image: trucdp/udaconnect-location-service:1.0.0
         name: udaconnect-location-service
         imagePullPolicy: Always
         env:
