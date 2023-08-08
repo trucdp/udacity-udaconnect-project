@@ -33,7 +33,7 @@ spec:
         app: udaconnect-connections-api
     spec:
       containers:
-      - image: barbietunnie/udaconnect-connections-api:latest
+      - image: trucdp/udaconnect-connections-api:1.0.0
         name: udaconnect-connections-api
         imagePullPolicy: Always
         env:
