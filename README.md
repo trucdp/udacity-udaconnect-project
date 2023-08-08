@@ -281,3 +281,4 @@ To manually connect to the database, you will need software compatible with Post
 
 ## Tips
 * We can access a running Docker container using `kubectl exec -it <pod_id> sh`. From there, we can `curl` an endpoint to debug network issues.
+---
