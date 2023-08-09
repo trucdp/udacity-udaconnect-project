@@ -1,0 +1,89 @@
+name: Terraform Infrastructure
+
+on:
+  push:
+    branches:
+      - '**'
+      - '!main'
+    paths:
+      - terraform/infrastruce/**
+      - .github/workflows/infrastructure.yaml
+
+jobs:
+  plan:
+    name: Terraform Validate
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    container: 
+        image: hashicorp/terraform
+    strategy:
+        matrix:
+          environment: ["${{  vars.MATRIX_ENVIRONMENT }}"]
+    env:
+      TF_WORKING_DIR: 'terraform/infrastructure'
+
+      AWS_ACCESS_KEY_ID : ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY : ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Terraform Init
+      run: terraform init 
+      working-directory: ${{ env.TF_WORKING_DIR }}
+
+    - name: Terraform Format check 
+      run: terraform fmt -check -recursive 
+
+    - name: Terraform Validate
+      run: terraform validate
+      working-directory: ${{ env.TF_WORKING_DIR }}
+
+    - name: Terraform select workspace
+      run: terraform workspace select ${{ matrix.environment }}
+      working-directory: ${{ env.TF_WORKING_DIR }}
+
+    - name: Terraform Plan
+      run: terraform plan -parallelism=1 -var-file="../variables/${{ matrix.environment }}.tfvars" -var-file="../variables/production-activation/${{ matrix.environment }}.tfvars" --out tfplan
+      working-directory: ${{ env.TF_WORKING_DIR }}
+
+
+
+
+
+name: Deploy Environments
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        environment:
+          - dev
+          - staging
+          - prod
+          - qa
+          - test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.4
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Apply
+        run: |
+          cd ${{ matrix.environment }}
+          terraform apply -var-file=terraform.${{ matrix.environment }}.tfvars

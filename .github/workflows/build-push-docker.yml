@@ -1,20 +1,29 @@
-name: Docker Image CI
+name: build services
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    branches:
+      - main
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        service:
+          - api
+          - connections-api
+          - frontend
+          - location-ingester
+          - location-service
+          - persons-api
+
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: |
-        cd modules/api
-        docker build . --file Dockerfile --tag udaconnect-api:1.0.1
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build service
+        run: |
+          cd ${{ matrix.service }}
+          docker build -t trucdp/${{ matrix.service }}:${{ github.sha }} .
