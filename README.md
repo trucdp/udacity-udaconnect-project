@@ -33,8 +33,8 @@ We will be installing the tools that we'll need to use for getting our environme
 1. [Install Docker](https://docs.docker.com/get-docker/)
 2. [Set up a DockerHub account](https://hub.docker.com/)
 3. [Set up `kubectl`](https://rancher.com/docs/rancher/v2.x/en/cluster-admin/cluster-access/kubectl/)
-4. [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads) with at latest version 7.0.10
-5. [Install Vagrant](https://www.vagrantup.com/docs/installation) with at latest version 2.3.7
+4. [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads) with at least version 6.0
+5. [Install Vagrant](https://www.vagrantup.com/docs/installation) with at least version 2.0
 
 ### Environment Setup
 To run the application, you will need a K8s cluster running locally and to interface with it via `kubectl`. We will be using Vagrant with VirtualBox to run K3s.
@@ -92,91 +92,12 @@ Afterwards, you can test that `kubectl` works by running a command like `kubectl
 8. `kubectl apply -f deployment/udaconnect-app.yaml` - Set up the service and deployment for the web app
 9. `sh scripts/run_db_command.sh <POD_NAME>` - Seed your database against the `postgres` pod. (`kubectl get pods` will give you the `POD_NAME`)
 10. Setup the messaging queue as follows
-    
-    ```
-    # Install helm on the guest VM
-    curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-
-    chmod 700 get_helm.sh
-
-    ./get_helm.sh
-    helm repo add bitnami https://charts.bitnami.com/bitnami
-
-    helm install udaconnect-kafka bitnami/kafka  --kubeconfig /etc/rancher/k3s/k3s.yaml 
-
-    # verify the installation
-    kubectl get pods
-
-    # Wait until 'kafka-0' pod is in the running state, then run the following commands
-
-    # Get the pod name for the kafka container
-    export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=kafka,app.kubernetes.io/instance=udaconnect-kafka,app.kubernetes.io/component=kafka" -o jsonpath="{.items[0].metadata.name}")
-
-    export BOOTSTRAP_SERVER=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=kafka,app.kubernetes.io/instance=udaconnect-kafka,app.kubernetes.io/component=kafka" -o jsonpath="{.items[0].spec.subdomain}")
-
-    # Set the topic name
-    export TOPIC="location-data"
-
-    # Create topic
-    kubectl exec -it udaconnect-kafka-controller-2 -- kafka-topics.sh \
-        --create --bootstrap-server $BOOTSTRAP_SERVER:9092 \
-        --replication-factor 1 --partitions 1 \
-        --topic $TOPIC
-      
-    ```
 ```
-NAME: udaconnect-kafka
-LAST DEPLOYED: Tue Aug  8 05:34:39 2023
-NAMESPACE: default
-STATUS: deployed
-REVISION: 1
-TEST SUITE: None
-NOTES:
-CHART NAME: kafka
-CHART VERSION: 24.0.5
-APP VERSION: 3.5.1
-
-** Please be patient while the chart is being deployed **
-
-Kafka can be accessed by consumers via port 19092 on the following DNS name from within your cluster:
-
-    udaconnect-kafka.default.svc.cluster.local
-
-Each Kafka broker can be accessed by producers via port 19092 on the following DNS name(s) from within your cluster:
-
-    udaconnect-kafka-controller-0.udaconnect-kafka-controller-headless.default.svc.cluster.local:19092
-    udaconnect-kafka-controller-1.udaconnect-kafka-controller-headless.default.svc.cluster.local:19092
-    udaconnect-kafka-controller-2.udaconnect-kafka-controller-headless.default.svc.cluster.local:19092
-
-The CLIENT listener for Kafka client connections from within your cluster have been configured with the following security settings:
-    - SASL authentication
-
-To connect a client to your Kafka, you need to create the 'client.properties' configuration files with the content below:
-
-security.protocol=SASL_PLAINTEXT
-sasl.mechanism=SCRAM-SHA-256
-sasl.jaas.config=org.apache.kafka.common.security.scram.ScramLoginModule required \
-    username="user1" \
-    password="$(kubectl get secret udaconnect-kafka-user-passwords --namespace default -o jsonpath='{.data.client-passwords}' | base64 -d | cut -d , -f 1)";
-
-To create a pod that you can use as a Kafka client run the following commands:
-
-    kubectl run udaconnect-kafka-client --restart='Never' --image docker.io/bitnami/kafka:3.5.1-debian-11-r14 --namespace default --command -- sleep infinity
-    kubectl cp --namespace default /path/to/client.properties udaconnect-kafka-client:/tmp/client.properties
-    kubectl exec --tty -i udaconnect-kafka-client --namespace default -- bash
-
-    PRODUCER:
-        kafka-console-producer.sh \
-            --producer.config /tmp/client.properties \
-            --broker-list udaconnect-kafka-controller-0.udaconnect-kafka-controller-headless.default.svc.cluster.local:19092,udaconnect-kafka-controller-1.udaconnect-kafka-controller-headless.default.svc.cluster.local:19092,udaconnect-kafka-controller-2.udaconnect-kafka-controller-headless.default.svc.cluster.local:19092 \
-            --topic location-data
-
-    CONSUMER:
-        kafka-console-consumer.sh \
-            --consumer.config /tmp/client.properties \
-            --bootstrap-server udaconnect-kafka.default.svc.cluster.local:19092 \
-            --topic location-data \
-            --from-beginning
+helm repo add kafka-repo https://sir5kong.github.io/kafka-docker
+helm upgrade --install udaconnect-kafka \
+  --create-namespace \
+  --set broker.persistence.size="20Gi" \
+  kafka-repo/kafka
 ```
     
 11. `kubectl apply -f deployment/udaconnect-location-service.yaml` - Set up the location service
@@ -281,4 +202,3 @@ To manually connect to the database, you will need software compatible with Post
 
 ## Tips
 * We can access a running Docker container using `kubectl exec -it <pod_id> sh`. From there, we can `curl` an endpoint to debug network issues.
----
